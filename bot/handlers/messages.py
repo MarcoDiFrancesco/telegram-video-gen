@@ -8,6 +8,7 @@ from veo.client import VeoClient
 from database import settings as db_settings
 from database import messages as db_messages
 from storage.manager import StorageManager
+from config.settings import GLOBAL_VIDEO_QUOTA_LIMIT
 
 router = Router()
 logger = logging.getLogger(__name__)
@@ -50,6 +51,23 @@ async def handle_message(message: Message):
     
     if not prompt:
         await message.answer("❌ Please provide a text prompt for video generation.")
+        return
+    
+    # Check global video quota before proceeding
+    videos_generated = db_messages.get_successful_videos_count()
+    total_cost = db_messages.get_total_cost()
+    
+    if videos_generated >= GLOBAL_VIDEO_QUOTA_LIMIT:
+        remaining_quota = GLOBAL_VIDEO_QUOTA_LIMIT - videos_generated
+        await message.answer(
+            f"❌ <b>Quota Limit Reached</b>\n\n"
+            f"The global limit of <b>{GLOBAL_VIDEO_QUOTA_LIMIT} videos</b> has been reached.\n\n"
+            f"📊 Stats:\n"
+            f"  • Total videos generated: {videos_generated}\n"
+            f"  • Total cost: <b>${total_cost:.2f} USD</b>\n"
+            f"  • Remaining quota: {remaining_quota} videos\n\n"
+            f"The service is temporarily unavailable. Please try again later."
+        )
         return
     
     # Get user settings

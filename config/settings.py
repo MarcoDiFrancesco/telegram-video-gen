@@ -16,6 +16,9 @@ DEFAULT_MODEL = "veo-3.1-fast-generate-001"
 DEFAULT_DURATION = 8
 DEFAULT_RESOLUTION = "720p"
 
+# Global quota limits
+GLOBAL_VIDEO_QUOTA_LIMIT = 70
+
 # Validate required environment variables
 if not TELEGRAM_BOT_TOKEN:
     raise ValueError("TELEGRAM_BOT_TOKEN environment variable is required")

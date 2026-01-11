@@ -114,3 +114,21 @@ def get_stats() -> Dict[str, any]:
         "failed_messages": row["failed_messages"] or 0
     }
 
+
+def get_successful_videos_count() -> int:
+    """Get total count of successfully generated videos across all users."""
+    cursor.execute("""
+        SELECT COUNT(*) as count FROM messages WHERE status = 'success'
+    """)
+    row = cursor.fetchone()
+    return row["count"] or 0
+
+
+def get_total_cost() -> float:
+    """Get total cost of all successfully generated videos across all users."""
+    cursor.execute("""
+        SELECT SUM(cost) as total FROM messages WHERE status = 'success'
+    """)
+    row = cursor.fetchone()
+    return row["total"] or 0.0
+
