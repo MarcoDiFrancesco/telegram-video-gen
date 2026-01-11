@@ -6,7 +6,6 @@ services:
     env_file:
       - .env
     volumes:
-      # Persist the database and storage folder
-      - ./database.db:/app/database.db
+      - ./data/database.db:/app/database.db
       - ./storage:/app/storage
       - ./service-account.json:/app/service-account.json:ro
