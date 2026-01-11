@@ -1,0 +1,13 @@
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.log
+
+.git/
+.vscode/
+.idea/
+
+*.db
+storage/
+service-account.json

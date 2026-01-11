@@ -1,0 +1,12 @@
+services:
+  telegram-bot:
+    build: .
+    container_name: telegram-video-gen
+    restart: unless-stopped
+    env_file:
+      - .env
+    volumes:
+      # Persist the database and storage folder
+      - ./database.db:/app/database.db
+      - ./storage:/app/storage
+      - ./service-account.json:/app/service-account.json:ro

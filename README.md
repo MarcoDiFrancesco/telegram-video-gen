@@ -2,6 +2,8 @@
 
 A **Telegram bot** that generates videos using **Google Veo API**.
 
+Why? Because Google Cloud offers 300 USD of credits for new accounts.
+
 <p align="center">
   <img src="assets/bot-screenshot.jpg" alt="Bot screenshot" width="300">
 </p>
