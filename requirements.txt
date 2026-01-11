@@ -1,0 +1,7 @@
+aiogram==3.13.1
+google-cloud-aiplatform==1.66.0
+google-cloud-storage==2.18.2
+google-auth==2.35.0
+python-dotenv==1.0.1
+requests==2.31.0
+
